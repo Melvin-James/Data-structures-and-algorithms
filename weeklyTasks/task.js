@@ -542,29 +542,29 @@
 // }
 
 //Arrange alternate positive and negative numbers in an array
-function arrangeAlternate(array){
-    let possitives = [];
-    let negatives = [];
-    for(let i=0;i<array.length;i++){
-        if(array[i]>=0){
-            possitives.push(array[i]);
-        }else{
-            negatives.push(array[i]);
-        }
-    }
-    let result=[];
-    let i=0, j=0;
-    while(i<possitives.length && j<negatives.length){
-        result.push(possitives[i++]);
-        result.push(negatives[j++]);
-    }
-    while(i<possitives.length){
-        result.push(possitives[i++]);
-    }
-    while(j<negatives.length){
-        result.push(negatives[j++]);
-    }
-    return result;
-}
-let array = [3, -2, 5, -7, 8, -1, -4, 6];
-console.log(arrangeAlternate(array));
+// function arrangeAlternate(array){
+//     let possitives = [];
+//     let negatives = [];
+//     for(let i=0;i<array.length;i++){
+//         if(array[i]>=0){
+//             possitives.push(array[i]);
+//         }else{
+//             negatives.push(array[i]);
+//         }
+//     }
+//     let result=[];
+//     let i=0, j=0;
+//     while(i<possitives.length && j<negatives.length){
+//         result.push(possitives[i++]);
+//         result.push(negatives[j++]);
+//     }
+//     while(i<possitives.length){
+//         result.push(possitives[i++]);
+//     }
+//     while(j<negatives.length){
+//         result.push(negatives[j++]);
+//     }
+//     return result;
+// }
+// let array = [3, -2, 5, -7, 8, -1, -4, 6];
+// console.log(arrangeAlternate(array));
