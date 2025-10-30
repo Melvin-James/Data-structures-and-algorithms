@@ -8,3 +8,5 @@ function isSorted(input){
 }
 console.log(isSorted([1, 2, 3, 4, 5]));
 console.log(isSorted([1, 3, 2, 4, 5]));
+//Time - O(n)
+//space - O(1)
