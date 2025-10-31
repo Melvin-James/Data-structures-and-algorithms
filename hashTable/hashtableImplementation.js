@@ -43,7 +43,7 @@ ht.set('kiwi',200);
 ht.set('orange',140);
 ht.display();
 console.log('After deletion:');
-console.log(ht.delete('kiwi'));
+console.log(ht.delete('banana'));
 ht.display();
 
 //Here no collison handling and thereby the hash function resolves the both 
