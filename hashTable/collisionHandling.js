@@ -52,6 +52,7 @@ class hashTable{
                 return;
             }
         }
+        console.log('Key not found');
     }
     display(){
         for(let i=0;i<this.size;i++){
