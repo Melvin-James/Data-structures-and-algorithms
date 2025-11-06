@@ -1,3 +1,10 @@
+// Problem: 496. Next Greater Element I (LeetCode)
+// Difficulty: Easy
+// Category: Stack
+// Date: 2025-11-06
+// Approach: Monotonic Stack + Hash Map
+// Time: O(n), Space: O(n)
+
 function nextGreaterElement(nums1,nums2){
     let map = {};
     let stack = [];
