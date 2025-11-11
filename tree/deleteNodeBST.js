@@ -93,7 +93,6 @@ class binarySearchTree{
         let queue = [this.root];
         while(queue.length){
             let currentNode = queue.shift();
-            if(!currentNode) continue;
             console.log(currentNode.value);
             if(currentNode.left){
                 queue.push(currentNode.left);
@@ -111,6 +110,6 @@ bst.insert(15);
 bst.insert(3);
 bst.insert(7);
 bst.levelOrder();
-bst.delete(10);
+bst.delete(3);
 console.log('After deleting:');
 bst.levelOrder();
