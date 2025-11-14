@@ -33,39 +33,18 @@ class binaryTree {
             }
         }
     }
-    levelOrder(){
-        const queue = [this.root];
+    search(value){
+        let queue = [this.root];
         while(queue.length){
-            let curr = queue.shift();
-            console.log(curr.value);
-            if(curr.left){
-                queue.push(curr.left);
+            let currentNode = queue.shift();
+            if(currentNode.value === value){
+                return 'Value found';
+            }else{
+                if(currentNode.left) queue.push(currentNode.left);
+                if(currentNode.right) queue.push(currentNode.right);
             }
-            if(curr.right){
-                queue.push(curr.right);
-            }
         }
-    }
-    preOrder(root){
-        if(root){
-            console.log(root.value);
-            this.preOrder(root.left);
-            this.preOrder(root.right);
-        }
-    }
-    inOrder(root){
-        if(root){
-            this.inOrder(root.left);
-            console.log(root.value);
-            this.inOrder(root.right);
-        }
-    }
-    postOrder(root){
-        if(root){
-            this.postOrder(root.left);
-            this.postOrder(root.right);
-            console.log(root.value);
-        }
+        return 'Value not found';
     }
 }
 const bt = new binaryTree();
@@ -74,4 +53,4 @@ bt.insert(5);
 bt.insert(15);
 bt.insert(3);
 bt.insert(7);
-bt.postOrder(bt.root);
+console.log(bt.search(10));

@@ -33,39 +33,16 @@ class binaryTree {
             }
         }
     }
-    levelOrder(){
-        const queue = [this.root];
+    countNodes(){
+        let count = 0;
+        let queue = [this.root];
         while(queue.length){
-            let curr = queue.shift();
-            console.log(curr.value);
-            if(curr.left){
-                queue.push(curr.left);
-            }
-            if(curr.right){
-                queue.push(curr.right);
-            }
+            let currentNode = queue.shift();
+            count++;
+            if(currentNode.left) queue.push(currentNode.left);
+            if(currentNode.right) queue.push(currentNode.right);
         }
-    }
-    preOrder(root){
-        if(root){
-            console.log(root.value);
-            this.preOrder(root.left);
-            this.preOrder(root.right);
-        }
-    }
-    inOrder(root){
-        if(root){
-            this.inOrder(root.left);
-            console.log(root.value);
-            this.inOrder(root.right);
-        }
-    }
-    postOrder(root){
-        if(root){
-            this.postOrder(root.left);
-            this.postOrder(root.right);
-            console.log(root.value);
-        }
+        return count;
     }
 }
 const bt = new binaryTree();
@@ -74,4 +51,4 @@ bt.insert(5);
 bt.insert(15);
 bt.insert(3);
 bt.insert(7);
-bt.postOrder(bt.root);
+console.log('Number of nodes in tree:',bt.countNodes());
