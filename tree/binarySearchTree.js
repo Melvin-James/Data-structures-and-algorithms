@@ -12,27 +12,27 @@ class binarySearchTree{
     isEmpty(){
         return this.root === null;
     }
-    insertNode(root,newNode){
-        if(newNode.value<root.value){
-            if(root.left===null){
-                root.left = newNode;
-            }else{
-                this.insertNode(root.left,newNode);
-            }
-        }else{
-            if(root.right===null){
-                root.right = newNode;
-            }else{
-                this.insertNode(root.right,newNode);
-            }
-        }
-    }
     insert(value){
-        let newNode = new Node(value);
-        if(this.isEmpty()){
-            this.root = newNode;
-        }else{
-            this.insertNode(this.root,newNode);
+        let node = new Node(value);
+        if(!this.root){
+            this.root = node;
+            return;
+        }
+        let cur = this.root;
+        while(true){
+            if(value<cur.value){
+                if(!cur.left){
+                    cur.left = node;
+                    return;
+                }
+                cur = cur.left;
+            }else{
+                if(!cur.right){
+                    cur.right = node;
+                    return;
+                }
+                cur = cur.right;
+            }
         }
     }
     search(root,value){

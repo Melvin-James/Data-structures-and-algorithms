@@ -33,6 +33,16 @@ class binaryTree {
             }
         }
     }
+    search(value){
+        if(!this.root) return;
+        const queue = [this.root];
+        while(queue.length){
+            const curNode = queue.shift();
+            if(curNode.value === value) return curNode;
+            if(curNode.left) queue.push(curNode.left);
+            if(curNode.right) queue.push(curNode.right);
+        }
+    }
     levelOrder(){
         const queue = [this.root];
         while(queue.length){
