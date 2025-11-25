@@ -10,12 +10,9 @@ class binaryTree {
     constructor(){
         this.root = null;
     }
-    isEmpty(){
-        return this.root === null;
-    }
     insert(value){
         let node = new Node(value);
-        if(this.isEmpty()){
+        if(!this.root){
             this.root = node;
         }else{
             let queue = [this.root];

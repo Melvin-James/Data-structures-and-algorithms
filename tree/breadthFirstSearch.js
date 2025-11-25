@@ -9,43 +9,37 @@ class binarySearchTree{
     constructor(){
         this.root = null;
     }
-    isEmpty(){
-        return this.root === null;
-    }
-    insertNode(root,node){
-        if(node.value<root.value){
-            if(!root.left){
-                root.left = node;
-            }else{
-                this.insertNode(root.left,node);
-            }
-        }else{
-            if(!root.right){
-                root.right = node;
-            }else{
-                this.insertNode(root.right,node);
-            }
-        }
-    }
     insert(value){
         let node = new Node(value);
-        if(this.isEmpty()){
+        if(!this.root){
             this.root = node;
-        }else{
-            this.insertNode(this.root,node);
+            return;
+        }
+        let current = this.root;
+        while(true){
+            if(value < current.value){
+                if(!current.left){
+                    current.left = node;
+                    return;
+                }
+                current = current.left;
+            }else{
+                if(!current.right){
+                    current.right = node;
+                    return;
+                }
+                current = current.right;
+            }
         }
     }
-    search(root,value){
-        if(this.isEmpty()){
-            return false;
+    search(value){
+        if(!this.root) return;
+        let current = this.root;
+        while(current){
+            if(value === current.value) return current;
+            current = value < current.value ? current.left : current.right;
         }
-        if(root.value === value){
-            return true;
-        }else if(value < root.value){
-            return this.search(root.left,value);
-        }else{
-            return this.search(root.right,value);
-        }
+        return null;
     }
     levelOrder(){
         if(this.isEmpty()){
@@ -72,8 +66,8 @@ bst.insert(5);
 bst.insert(15);
 bst.insert(3);
 bst.insert(7);
-console.log(bst.search(bst.root,10));
-console.log(bst.search(bst.root,5));
-console.log(bst.search(bst.root,15));
-console.log(bst.search(bst.root,3));
-console.log(bst.search(bst.root,7));
+console.log(bst.search(10));
+console.log(bst.search(5));
+console.log(bst.search(15));
+console.log(bst.search(3));
+console.log(bst.search(7));
