@@ -9,43 +9,37 @@ class binarySearchTree{
     constructor(){
         this.root = null;
     }
-    isEmpty(){
-        return this.root === null;
-    }
-    insertNode(root,node){
-        if(node.value < root.value){
-            if(!root.left){
-                root.left = node;
-            }else{
-                this.insertNode(root.left,node);
-            }
-        }else{
-            if(!root.right){
-                root.right = node;
-            }else{
-                this.insertNode(root.right,node);
-            }
-        }
-    }
     insert(value){
         let node = new Node(value);
-        if(this.isEmpty()){
+        if(!this.root){
             this.root = node;
-        }else{
-            this.insertNode(this.root,node);
+            return;
+        }
+        let current = this.root;
+        while(true){
+            if(value < current.value){
+                if(!current.left){
+                    current.left = node;
+                    return;
+                }
+                current = current.left;
+            }else{
+                if(!current.right){
+                    current.right = node;
+                    return;
+                }
+                current = current.right;
+            }
         }
     }
-    search(root,value){
-        if(this.isEmpty()){
-            return false;
+    search(value){
+        if(!this.root) return;
+        let current = this.root;
+        while(current){
+            if(value === current.value) return current;
+            current = value < current.value ? current.left : current.right;
         }
-        if(root.value === value){
-            return true;
-        }else if(value < root.value){
-            return this.search(root.left,value);
-        }else{
-            return this.search(root.right,value);
-        }
+        return null;
     }
     preOrder(root){
         if(root){
@@ -54,19 +48,15 @@ class binarySearchTree{
             this.preOrder(root.right);
         }
     }
-    min(root){
-        if(!root.left){
-            return root.value;
-        }else{
-            return this.min(root.left);
-        }
+    min(node){
+        if(!node) return null;
+        while(node) node = node.left;
+        return node;
     }
-    max(root){
-        if(!root.right){
-            return root.value;
-        }else{
-            return this.max(root.right);
-        }
+    max(node){
+        if(!node) return null;
+        while(node) node = node.right;
+        return node;
     }
 }
 const bst = new binarySearchTree();

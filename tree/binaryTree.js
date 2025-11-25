@@ -1,61 +1,57 @@
-class Node {
+class Node{
     constructor(value){
         this.value = value;
         this.left = null;
         this.right = null;
     }
 }
-
-class binaryTree {
+class binaryTree{
     constructor(){
         this.root = null;
     }
-    isEmpty(){
-        return this.root === null;
-    }
     insert(value){
         let node = new Node(value);
-        if(this.isEmpty()){
+        if(!this.root){
             this.root = node;
-        }else{
-            let queue = [this.root];
-            while(queue.length){
-                let currentNode = queue.shift();
-                if(!currentNode.left){
-                    currentNode.left = node;
-                    return;
-                }else if(!currentNode.right){
-                    currentNode.right = node;
-                    return;
-                }
-                queue.push(currentNode.left);
-                queue.push(currentNode.right);
+            return;
+        }
+        let queue = [this.root];
+        while(queue.length){
+            let current = queue.shift();
+            if(!current.left){
+                current.left = node;
+                return;
             }
+            if(!current.right){
+                current.right = node;
+                return;
+            }
+            queue.push(current.left);
+            queue.push(current.right);
         }
     }
     search(value){
         if(!this.root) return;
-        const queue = [this.root];
+        let queue = [this.root];
         while(queue.length){
-            const curNode = queue.shift();
-            if(curNode.value === value) return curNode;
-            if(curNode.left) queue.push(curNode.left);
-            if(curNode.right) queue.push(curNode.right);
-        }
+            let current = queue.shift();
+            if(value === current.value) return current;
+            if(current.left) queue.push(current.left);
+            if(current.right) queue.push(current.right);
+        } 
     }
+    //BFS
     levelOrder(){
-        const queue = [this.root];
+        if(!this.root) return;
+        let queue = [this.root];
         while(queue.length){
-            let curr = queue.shift();
-            console.log(curr.value);
-            if(curr.left){
-                queue.push(curr.left);
-            }
-            if(curr.right){
-                queue.push(curr.right);
-            }
+            let current = queue.shift();
+            console.log(current.value);
+            if(current.left) queue.push(current.left);
+            if(current.right) queue.push(current.right);
         }
     }
+    //DFS TRAVERSALS
     preOrder(root){
         if(root){
             console.log(root.value);
@@ -79,9 +75,16 @@ class binaryTree {
     }
 }
 const bt = new binaryTree();
-bt.insert(10);
-bt.insert(5);
-bt.insert(15);
-bt.insert(3);
-bt.insert(7);
+bt.insert('A');
+bt.insert('C');
+bt.insert('D');
+bt.insert('E');
+console.log(bt.search('C'));
+console.log('BFS TRAVERSAL: LEVEL ORDER');
+bt.levelOrder();
+console.log('DFS TRAVERSAL:PRE ORDER');
+bt.preOrder(bt.root);
+console.log('DFS TRAVERSAL:IN ORDER');
+bt.inOrder(bt.root);
+console.log('DFS TRAVERSAL:POST ORDER');
 bt.postOrder(bt.root);

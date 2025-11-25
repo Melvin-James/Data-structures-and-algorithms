@@ -9,9 +9,6 @@ class binarySearchTree{
     constructor(){
         this.root = null;
     }
-    isEmpty(){
-        return this.root === null;
-    }
     insert(value){
         let node = new Node(value);
         if(!this.root){
@@ -35,17 +32,22 @@ class binarySearchTree{
             }
         }
     }
-    search(root,value){
-        if(!root){
-            return false;
-        }else{
-            if(value === root.value){
-                return true;
-            }else if(value < root.value){
-                return this.search(root.left,value);
-            }else{
-                return this.search(root.right,value);
-            }
+    search(value){
+        let cur = this.root;
+        while(cur){
+            if(cur.value === value) return cur;
+            cur = value < cur.value ? cur.left : cur.right;
+        }
+        return null;
+    }
+    levelOrder(){
+        if(!this.root) return;
+        let queue = [this.root];
+        while(queue.length){
+            let current = queue.shift();
+            console.log(current.value);
+            if(current.left) queue.push(current.left);
+            if(current.right) queue.push(current.right);
         }
     }
     preOrder(root){
@@ -71,12 +73,12 @@ class binarySearchTree{
     }
 }
 const bst = new binarySearchTree();
-console.log(bst.isEmpty());
 bst.insert(10);
 bst.insert(5);
 bst.insert(15);
 bst.insert(3);
 bst.insert(7);
+console.log(bst.search(15));
 console.log('pre order traversal:');
 bst.preOrder(bst.root);
 console.log('in order traversal:');

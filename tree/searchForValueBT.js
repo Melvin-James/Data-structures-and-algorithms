@@ -10,12 +10,9 @@ class binaryTree {
     constructor(){
         this.root = null;
     }
-    isEmpty(){
-        return this.root === null;
-    }
     insert(value){
         let node = new Node(value);
-        if(this.isEmpty()){
+        if(!this.root){
             this.root = node;
         }else{
             let queue = [this.root];
@@ -34,17 +31,14 @@ class binaryTree {
         }
     }
     search(value){
+        if(!this.root) return;
         let queue = [this.root];
         while(queue.length){
-            let currentNode = queue.shift();
-            if(currentNode.value === value){
-                return 'Value found';
-            }else{
-                if(currentNode.left) queue.push(currentNode.left);
-                if(currentNode.right) queue.push(currentNode.right);
-            }
+            let current = queue.shift();
+            if(current.value === value) return current;
+            if(current.left) queue.push(currentNode.left);
+            if(current.right) queue.push(currentNode.right);
         }
-        return 'Value not found';
     }
 }
 const bt = new binaryTree();
