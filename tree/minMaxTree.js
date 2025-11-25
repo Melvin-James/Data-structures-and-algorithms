@@ -50,12 +50,12 @@ class binarySearchTree{
     }
     min(node){
         if(!node) return null;
-        while(node) node = node.left;
+        while(node.left) node = node.left;
         return node;
     }
     max(node){
         if(!node) return null;
-        while(node) node = node.right;
+        while(node.right) node = node.right;
         return node;
     }
 }

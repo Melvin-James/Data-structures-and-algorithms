@@ -50,6 +50,31 @@ class binarySearchTree{
         while(node.right) node = node.right;
         return node;
     }
+    deleteNode(root,value){
+        if(root === null) return root;
+        if(value<root.value){
+            root.left = this.deleteNode(root.left,value);
+        }else if(value > root.value){
+            root.right = this.deleteNode(root.right,value);
+        }else{
+            if(!root.left && !root.right){
+                return null;
+            }
+            if(!root.left){
+                return root.right;
+            }
+            if(!root.right){
+                return root.left;
+            }
+            let successor = this.min(root.right);
+            root.value = successor.value;
+            root.right = this.deleteNode(root.right,successor.value);
+        }
+        return root;
+    }
+    delete(value){
+        this.root = this.deleteNode(this.root,value);
+    }
     levelOrder(){
         if(!this.root) return;
         let queue = [this.root];
@@ -70,3 +95,6 @@ bst.insert(7);
 bst.levelOrder();
 console.log('Minimum:',bst.min(bst.root));
 console.log('Maximum:',bst.max(bst.root));
+console.log('After deleting:');
+bst.delete(7);
+bst.levelOrder();
