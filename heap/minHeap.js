@@ -65,9 +65,6 @@ class minHeap{
     display(){
         console.log(this.heap);
     }
-    size(){
-
-    }
 }
 const heap = new minHeap();
 heap.insert(10);
