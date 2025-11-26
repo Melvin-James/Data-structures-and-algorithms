@@ -38,7 +38,7 @@ class minHeap{
     }
     heapifyDown(){
         let index = 0;
-        const length = this.heap.length;
+        let length = this.heap.length;
         while(true){
             let left = this.left(index);
             let right = this.right(index);
@@ -59,7 +59,7 @@ class minHeap{
         }
     }
     peek(){
-        if(this.heap === 0) return null;
+        if(this.heap.length === 0) return null;
         return this.heap[0];
     }
     display(){
