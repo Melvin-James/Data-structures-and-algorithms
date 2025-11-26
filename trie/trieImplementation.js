@@ -9,35 +9,32 @@ class Trie{
         this.root = new Node();
     }
     insert(word){
-        let curr = this.root;
-        for(let i=0;i<word.length;i++){
-            let charToInsert = word[i];
-            if(!(charToInsert in curr.children)){
-                curr.children[charToInsert] = new Node();
+        let current = this.root;
+        for(let ch of word){
+            if(!current.children[ch]){
+                current.children[ch] = new Node();
             }
-            curr = curr.children[charToInsert];
+            current = current.children[ch];
         }
-        curr.isWordEnd = true;
+        current.isWordEnd = true;
     }
     contains(word){
-        let curr = this.root;
-        for(let i=0;i<word.length;i++){
-            let charToFind = word[i];
-            if(!(charToFind in curr.children)){
+        let current = this.root;
+        for(let ch of word){
+            if(!current.children[ch]){
                 return false;
             }
-            curr = curr.children[charToFind];
+            current = current.children[ch];
         }
-        return curr.isWordEnd;
+        return current.isWordEnd;
     }
     startsWithPrefix(prefix){
-        let curr = this.root;
-        for(let i=0;i<prefix.length;i++){
-            let charToFind = prefix[i];
-            if(!(charToFind in curr.children)){
+        let current = this.root;
+        for(let ch of prefix){
+            if(!current.children[ch]){
                 return false;
             }
-            curr = curr.children[charToFind];
+            current = current.children[ch];
         }
         return true;
     }
