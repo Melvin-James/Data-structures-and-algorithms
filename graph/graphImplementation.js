@@ -41,17 +41,33 @@ class Graph{
         }
         delete this.adjacencyList[vertex];
     }
-    BFS(start){
-        const visited = new Set();
-        const queue = [start];
+    bfs(start){
+        let visited = new Set();
+        let queue = [start];
         visited.add(start);
-        while(queue.length>0){
-            const current = queue.shift();
-            console.log(current);
-            for(let neighbor of this.adjacencyList[current]){
-                if(!visited.has(neighbor)){
-                    visited.add(neighbor);
-                    queue.push(neighbor);
+        while(queue.length){
+            let vertex = queue.shift();
+            console.log(vertex);
+            for(let adjacentVertex of this.adjacencyList[vertex]){
+                if(!visited.has(adjacentVertex)){
+                    visited.add(adjacentVertex);
+                    queue.push(adjacentVertex);
+                }
+            }
+        }
+    }
+    dfs(start){
+        let visited = new Set();
+        let stack = [start];
+        while(stack.length){
+            let vertex = stack.pop();
+            if(!visited.has(vertex)){
+                console.log(vertex);
+                visited.add(vertex);
+                for(let adjacentVertex of this.adjacencyList[vertex]){
+                    if(!visited.has(adjacentVertex)){
+                        stack.push(adjacentVertex);
+                    }
                 }
             }
         }
@@ -64,4 +80,5 @@ graph.addVertex('C');
 graph.addEdge('A','B');
 graph.addEdge('B','C');
 graph.display();
-graph.BFS('B');
+graph.bfs('A');
+graph.dfs('A');
