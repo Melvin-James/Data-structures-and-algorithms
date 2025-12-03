@@ -29,6 +29,13 @@ class genericTree{
             this.preOrder(child);
         }
     }
+    postOrder(node){
+        if(!node) return null;
+        for(let child of node.children){
+            this.postOrder(child);
+        }
+        console.log(node.value);
+    }
     levelOrder(root){
         let queue = [root];
         while(queue.length){
@@ -56,4 +63,4 @@ console.log('----------------------------------------');
 gt.levelOrder(gt.root);
 console.log('----------------------------------------');
 gt.removeChild(b,'D');
-gt.levelOrder(gt.root);
+gt.postOrder(gt.root);
