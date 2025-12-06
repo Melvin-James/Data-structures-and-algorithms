@@ -568,3 +568,9 @@
 // }
 // let array = [3, -2, 5, -7, 8, -1, -4, 6];
 // console.log(arrangeAlternate(array));
+const users = [
+    {name:'Melvin',age:23},
+    {name:'Muzawir',age:20},
+    {name:'Lenin',age:21}
+]
+console.table(users);
