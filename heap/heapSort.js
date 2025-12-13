@@ -1,6 +1,6 @@
 function heapSort(arr){
     let n = arr.length;
-    for(let i = Math.floor((n-2)/2);i>=0;i--){
+    for(let i = Math.floor((n/2)-1);i>=0;i--){
         heapifyDown(arr,n,i);
     }
     for (let end = n - 1; end > 0; end--) {
