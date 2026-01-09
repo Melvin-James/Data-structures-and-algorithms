@@ -76,6 +76,24 @@ class binarySearchTree{
         while(node.left) node = node.left;
         return node;
     }
+    closestValue(target){
+        let current = this.root;
+        let closest = this.root.value;
+        while(current){
+            if(Math.abs(target - current.value) < Math.abs(target - closest)){
+                closest = current.value;
+            }
+
+            if(target < current.value){
+                current = current.left;
+            }else if(target > current.value){
+                current = current.right;
+            }else{
+                break;
+            }
+        }
+        return closest;
+    }
     deleteNode(root,value){
         if(root === null) return root;
         if(value < root.value){
