@@ -8,7 +8,7 @@ class LinkedList{
     constructor(){
         this.head = null;
     }
-    insertAtEnd(value){
+    insert(value){
         let node = new Node(value);
         if(!this.head){
             this.head = node;
@@ -20,17 +20,22 @@ class LinkedList{
         }
         current.next = node;
     }
-    reverse(){
+    removeMid(){
         if(!this.head) return;
-        let prev = null;
-        let current = this.head;
-        while(current){
-            let next = current.next;
-            current.next = prev;
-            prev = current;
-            current = next;
+        //handle single node
+        if(!this.head.next){
+            this.head = null;
+            return;
         }
-        this.head = prev;
+        let prev = null;
+        let slow = this.head;
+        let fast = this.head;
+        while(fast && fast.next){
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = slow.next;
     }
     display(){
         let result = '';
@@ -43,10 +48,15 @@ class LinkedList{
     }
 }
 const list = new linkedList();
-list.insertAtEnd(10);
-list.insertAtEnd(45);
-list.insertAtEnd(30);
-list.insertAtEnd(5);
+list.insert(10);
+list.insert(45);
+list.insert(30);
+list.insert(11);
+list.insert(5);
 list.display();
-list.reverse();
+list.removeMid();
+list.display();
+list.removeMid();
+list.display();
+list.removeMid();
 list.display();
