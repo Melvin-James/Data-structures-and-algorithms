@@ -10,7 +10,7 @@ class Stack{
         this.stack.push(value);
         if(this.maxStack.length === 0 || value >= this.getMax()){
             this.maxStack.push(value);
-        }
+        } 
     }
     pop(){
         if(this.stack.length === 0) return;
