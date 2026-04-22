@@ -1,4 +1,6 @@
 //Bubble sort using linked list
+// why an end variable, in bubble sort, After each pass, 
+// Last element is sorted, No need to check again
 class Node{
     constructor(value){
         this.value = value;
