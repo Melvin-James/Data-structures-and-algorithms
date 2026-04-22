@@ -5,19 +5,26 @@ class queue{
         this.rear = 0;
     }
     enqueue(value){
-        this.queue[this.rear]=value;
-        this.rear++;
+        this.queue[this.rear++]=value;
         console.log(`${value} inserted at rear`);
     }
     dequeue(){
-        if(this.front === this.rear) return "queue is empty";
-        let value =this.queue[this.front];
-        delete this.queue[this.front];
-        this.front++;
+        if(this.front === this.rear){
+            console.log('Empty queue');
+            return;
+        }
+        let value =this.queue[this.front++];
         console.log(`${value} removed from the front`);
+
+        //reset when empty
+        if(this.rear === this.front){
+            this.rear = 0;
+            this.front = 0;
+            this.queue = [];
+        }
     }
     display(){
-        let result = '|';
+        let result = '| ';
         for(let i=this.front;i<this.rear;i++){
             result+=this.queue[i]+' | ';
         }
