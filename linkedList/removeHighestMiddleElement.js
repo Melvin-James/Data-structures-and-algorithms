@@ -1,3 +1,5 @@
+// remove middle element from a linked list. 
+// if there is two middles, remove highest 
 class Node{
     constructor(value){
         this.value = value;
@@ -21,19 +23,29 @@ class LinkedList{
         current.next = node;
     }
     removeMid(){
-        if(!this.head) return;
-        //handle single node
-        if(!this.head.next){
+        if(!this.head || !this.head.next){
             this.head = null;
             return;
         }
-        let prev = null;
         let slow = this.head;
         let fast = this.head;
+        let prevPrev = null;
+        let prev = null;
         while(fast && fast.next){
+            prevPrev = prev;
             prev = slow;
             slow = slow.next;
             fast = fast.next.next;
+        }
+        if(fast === null){
+            if(prev.value > slow.value){
+                if(prevPrev===null){
+                    this.head = slow;
+                }else{
+                    prevPrev.next = slow;
+                }
+                return;
+            }
         }
         prev.next = slow.next;
     }
@@ -53,10 +65,7 @@ list.insert(45);
 list.insert(30);
 list.insert(11);
 list.insert(5);
-list.display();
-list.removeMid();
-list.display();
-list.removeMid();
+list.insert(34);
 list.display();
 list.removeMid();
 list.display();
