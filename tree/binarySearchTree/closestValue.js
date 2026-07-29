@@ -1,3 +1,4 @@
+//Find closest value  to the target value in BST
 class Node{
     constructor(value){
         this.value = value;
