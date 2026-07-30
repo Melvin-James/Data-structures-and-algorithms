@@ -17,8 +17,11 @@ class LinkedList{
             this.head = node;
             return;
         }
-        node.next = this.head;
-        this.head = node;
+        let current = this.head;
+        while(current.next){
+            current = current.next;
+        }
+        current.next = node;
     }
 
     display(){
@@ -32,21 +35,26 @@ class LinkedList{
         console.log(result+'null');
     }
 
-    addAtParticular(target,value){
-        if(!this.head) return -1;
 
+    addBefPos(position,value){
         let node = new Node(value);
-        let current = this.head;
-
-        while(current){
-            if(current.value === target){
-                node.next = current.next;
-                current.next = node;
-                return;
-            }
-            current = current.next;
+        if(position === 0) {
+            node.next = this.head;
+            this.head = node;
+            return;
         }
-        return -1;
+        let index = 0;
+        let curr = this.head;
+        let prev = null;
+        while(index < position){
+            prev = curr;
+            curr = curr.next;
+            index++;
+        }
+        prev.next = node;
+        node.next = curr;
+        return;
+        
     }
 }
 const list = new LinkedList();
@@ -56,5 +64,5 @@ list.insert(30);
 list.insert(40);
 list.insert(50);
 list.display();
-list.addAtParticular(30,60);
+list.addBefPos(2,20);
 list.display();
