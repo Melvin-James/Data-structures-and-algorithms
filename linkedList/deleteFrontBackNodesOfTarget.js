@@ -1,4 +1,4 @@
-// delete front and back node of target node
+// delete front and back node of target node SLL
 class Node{
     constructor(value){
         this.value = value;
@@ -54,7 +54,7 @@ class LinkedList{
                     return;
                 }else if(!curr.next.next){
                     prevPrev.next = curr;
-                    return
+                    return;
                 }else if(curr.next.next){
                     prevPrev.next = curr;
                     curr.next = curr.next.next;
