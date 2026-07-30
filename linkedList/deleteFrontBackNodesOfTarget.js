@@ -1,4 +1,4 @@
-//Add a node behind a particular postion in a linked list;
+// delete front and back node of target node
 class Node{
     constructor(value){
         this.value = value;
@@ -35,28 +35,39 @@ class LinkedList{
         console.log(result+'null');
     }
 
-
-    addBefPos(position,value){
-        let node = new Node(value);
-        if(position === 0) {
-            node.next = this.head;
-            this.head = node;
-            return;
-        }
-        let index = 0;
+    
+    deleteFrontBack(target) {
         let curr = this.head;
         let prev = null;
-        while(index < position){
-            prev = curr;
-            curr = curr.next;
-            index++;
+        let prevPrev = null;
+
+        if(this.head.value === target){
+            this.head.next = this.head.next.next;
+            return;
         }
-        prev.next = node;
-        node.next = curr;
+
+        while(curr.next){
+            if(curr.value === target) {
+                if(!prevPrev){
+                    this.head = curr;
+                    curr.next = curr.next.next;
+                    return;
+                }else if(!curr.next.next){
+                    prevPrev.next = curr;
+                    return
+                }else if(curr.next.next){
+                    prevPrev.next = curr;
+                    curr.next = curr.next.next;
+                    return;
+                }
+            }
+            prevPrev = prev;
+            prev = curr;
+            curr = curr.next
+        }
+        prevPrev.next = curr;
         return;
-        
     }
-    
 }
 const list = new LinkedList();
 list.insert(10);
@@ -65,5 +76,5 @@ list.insert(30);
 list.insert(40);
 list.insert(50);
 list.display();
-list.addBefPos(2,80);
+list.deleteFrontBack(20);
 list.display();
