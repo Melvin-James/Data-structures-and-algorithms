@@ -73,12 +73,25 @@ class binaryTree{
             console.log(root.value);
         }
     }
+
+    minVal(root = this.root){
+        if(!root) return Infinity;
+        return Math.min(root.value,this.minVal(root.left),this.minVal(root.right))
+    }
+
+    maxVal(root = this.root){
+        if(!root) return -Infinity;
+        return Math.max(root.value,this.maxVal(root.left),this.maxVal(root.right));
+    }
+
 }
 const bt = new binaryTree();
-bt.insert('A');
-bt.insert('C');
-bt.insert('D');
-bt.insert('E');
+bt.insert(23);
+bt.insert(12);
+bt.insert(90);
+bt.insert(56);
+bt.insert(45);
+bt.insert(67);
 console.log(bt.search('C'));
 console.log('BFS TRAVERSAL: LEVEL ORDER');
 bt.levelOrder();
@@ -88,3 +101,5 @@ console.log('DFS TRAVERSAL:IN ORDER');
 bt.inOrder(bt.root);
 console.log('DFS TRAVERSAL:POST ORDER');
 bt.postOrder(bt.root);
+console.log('Minimum value:',bt.minVal());
+console.log('Maximum value:',bt.maxVal());

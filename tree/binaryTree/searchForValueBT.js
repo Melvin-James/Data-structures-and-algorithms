@@ -40,6 +40,11 @@ class binaryTree {
             if(current.right) queue.push(currentNode.right);
         }
     }
+    searchNode(value,root = this.root){
+        if(!root) return false;
+        if(root.value === value) return true;
+        return (this.searchNode(value,root.left) || this.searchNode(value, root.right));
+    }
 }
 const bt = new binaryTree();
 bt.insert(10);
@@ -48,3 +53,4 @@ bt.insert(15);
 bt.insert(3);
 bt.insert(7);
 console.log(bt.search(10));
+console.log(bt.searchNode(11));
