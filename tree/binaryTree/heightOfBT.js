@@ -5,10 +5,11 @@ class Node{
         this.right = null;
     }
 }
-class binaryTree{
+class BinaryTree{
     constructor(){
         this.root = null;
     }
+    
     insert(value){
         let node = new Node(value);
         if(!this.root){
@@ -30,30 +31,39 @@ class binaryTree{
             queue.push(current.right);
         }
     }
-    countNodes(){
-        if(!this.root) return 0;
+    
+    BFS(){
+        if(!this.root) return;
         let queue = [this.root];
-        let count = 0;
         while(queue.length){
             let current = queue.shift();
-            if(current) count++;
+            console.log(current.value);
             if(current.left) queue.push(current.left);
             if(current.right) queue.push(current.right);
         }
-        return count;
     }
-    //count (nodes of left sub tree + nodes of right sub tree) + 1(current node);
-    countTotalNodes(root = this.root){
-        if(!root) return 0;
-
-        return (this.countTotalNodes(root.left)+this.countTotalNodes(root.right)) + 1;
+    
+    height(root){
+        if(root === null){
+            return 0;
+        }
+        
+        let leftHeight = this.height(root.left);
+        let rightHeight = this.height(root.right);
+        
+        return Math.max(leftHeight, rightHeight) + 1;
     }
 }
-const bt = new binaryTree();
+
+
+const bt = new BinaryTree();
 bt.insert('A');
 bt.insert('B');
 bt.insert('C');
 bt.insert('D');
 bt.insert('E');
-console.log('Number of nodes:',bt.countNodes());
-console.log('Number of nodes:',bt.countTotalNodes());
+bt.insert('F');
+bt.insert('G');
+bt.insert('H');
+bt.BFS();
+console.log('Height of the binary tree:',bt.height(bt.root));
